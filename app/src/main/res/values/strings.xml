@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MovieBuddy</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="user_name">User name</string>
+    <string name="birth_date">Birth date</string>
+    <string name="ok">Ok</string>
+    <string name="razvrsti_po">Razvrsti po:</string>
+    <string name="title">Title:</string>
+    <string name="tagline">Tagline:</string>
+    <string name="overview">Overview:</string>
+    <string name="genres">Genres:</string>
+    <string name="rating">Rating:</string>
+    <string name="revenue">Revenue:</string>
+    <string name="runtime">Runtime</string>
 </resources>
