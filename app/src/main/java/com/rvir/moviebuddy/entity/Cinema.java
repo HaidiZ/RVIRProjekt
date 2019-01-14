@@ -1,28 +1,28 @@
 package com.rvir.moviebuddy.entity;
 
+import com.rvir.moviebuddy.dao.CinemaDao;
+
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import io.reactivex.Completable;
 
 @Entity
 public class Cinema {
     @PrimaryKey
     @NonNull
-    private int IDkino;
     private String nazivKina;
     private String naslov;
-    private double koordinataX;
-    private double koordinataY;
+    private double dolzina;
+    private double sirina;
+
+    public Cinema(String naziv, String naslov, double dolzina, double sirina) {
+
+    }
 
     @NonNull
-    public int getID() {
-        return IDkino;
-    }
-
-    public void setID(@NonNull int ID) {
-        this.IDkino= ID;
-    }
-
     public String getNazivKina() {
         return nazivKina;
     }
@@ -39,19 +39,36 @@ public class Cinema {
         this.naslov = naslov;
     }
 
-    public double getKoordinataX() {
-        return koordinataX;
+    public double getDolzina() {
+        return dolzina;
     }
 
-    public void setKoordinataX(double koordinataX) {
-        this.koordinataX = koordinataX;
+    public void setDolzina(double koordinataX) {
+        this.dolzina = koordinataX;
     }
 
-    public double getKoordinataY() {
-        return koordinataY;
+    public double getSirina() {
+        return sirina;
     }
 
-    public void setKoordinataY(double koordinataY) {
-        this.koordinataY = koordinataY;
+    public void setSirina(double koordinataY) {
+        this.sirina = koordinataY;
+    }
+
+    public static void main(String[] args) {
+        Cinema cinema1 = new Cinema("CineplexxCelje","Mariborska 128, 3000 Celje", 46.243538, 15.278577);
+        CinemaDao cinemaDao = new CinemaDao() {
+            @Override
+            public Completable insertCinema(Cinema cinema) {
+                return null;
+            }
+
+            @Override
+            public ArrayList<Cinema> getAllCinemas() {
+                return null;
+            }
+        };
+        cinemaDao.insertCinema(cinema1);
+        System.out.print(cinemaDao.getAllCinemas().get(1));
     }
 }
