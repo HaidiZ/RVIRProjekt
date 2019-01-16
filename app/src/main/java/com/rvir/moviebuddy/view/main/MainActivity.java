@@ -2,9 +2,7 @@ package com.rvir.moviebuddy.view.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.rvir.moviebuddy.MovieBuddyApplication;
-import com.rvir.moviebuddy.R;
 import com.rvir.moviebuddy.api.dto.movielist.MovieResults;
 import com.rvir.moviebuddy.dao.DbUtil;
 import com.rvir.moviebuddy.dao.UserDao;
@@ -26,7 +24,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import com.rvir.moviebuddy.R;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
