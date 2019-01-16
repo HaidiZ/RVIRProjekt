@@ -55,8 +55,8 @@ public class Cinema {
         this.sirina = koordinataY;
     }
 
-    public static void main(String[] args) {
-        Cinema cinema1 = new Cinema("CineplexxCelje","Mariborska 128, 3000 Celje", 46.243538, 15.278577);
+  /*  public static void main(String[] args) {
+        Cinema cinema1 = new Cinema("CineplexxMurska","Stefana Kovača 43, 9000 Murska Sobota", 46.660544, 16.145138);
         CinemaDao cinemaDao = new CinemaDao() {
             @Override
             public Completable insertCinema(Cinema cinema) {
@@ -69,6 +69,6 @@ public class Cinema {
             }
         };
         cinemaDao.insertCinema(cinema1);
-        System.out.print(cinemaDao.getAllCinemas().get(1));
-    }
+        //System.out.print(cinemaDao.getAllCinemas());
+    }*/
 }

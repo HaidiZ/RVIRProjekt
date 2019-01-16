@@ -22,3 +22,5 @@ public interface CinemaDao {
     ArrayList<Cinema> getAllCinemas();
 
 }
+
+
