@@ -2,6 +2,12 @@ package com.rvir.moviebuddy.location;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.rvir.moviebuddy.R;
+
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,6 +20,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.rvir.moviebuddy.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+   /* private GoogleMap mMap;
 
     private GoogleMap mMap;
 
