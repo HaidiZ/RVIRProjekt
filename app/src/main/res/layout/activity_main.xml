@@ -77,5 +77,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_page_navigate_24dp" />
 
+        <Button
+            android:id="@+id/buttonMaps"
+            android:layout_width="49dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="196dp"
+            android:layout_marginLeft="196dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:text="Maps"
+            app:layout_constraintBottom_toTopOf="@+id/moviesRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spinnerSortType"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

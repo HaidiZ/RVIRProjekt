@@ -7,6 +7,7 @@ import com.rvir.moviebuddy.api.dto.movielist.MovieResults;
 import com.rvir.moviebuddy.dao.DbUtil;
 import com.rvir.moviebuddy.dao.UserDao;
 import com.rvir.moviebuddy.entity.MoviesSortType;
+import com.rvir.moviebuddy.location.MapsActivity;
 import com.rvir.moviebuddy.view.adduser.AddUserActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
   private ImageButton previousPageButton;
   private Spinner sortTypeSpinner;
   private MoviesSortType currentSortType = MoviesSortType.POPULARITY;
+
+  private Button btnMaps;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +124,20 @@ public class MainActivity extends AppCompatActivity {
     });
 
     loadMovies(currentPage, currentSortType);
+
+    //gumb maps
+    btnMaps = findViewById(R.id.buttonMaps);
+    btnMaps.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        openActivityMaps();
+      }
+    });
+  }
+
+  public void openActivityMaps(){
+    Intent intent = new Intent(this, MapsActivity.class);
+    startActivity(intent);
   }
 
   private void loadMovies(int page, MoviesSortType moviesSortType) {
