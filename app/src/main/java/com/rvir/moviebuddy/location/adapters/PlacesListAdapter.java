@@ -1,17 +1,26 @@
 package com.rvir.moviebuddy.location.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.rvir.moviebuddy.R;
 
 import com.rvir.moviebuddy.location.entities.Result;
 
+import java.io.InputStream;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PlacesListAdapter extends ArrayAdapter<Result> {
 
@@ -26,7 +35,50 @@ public class PlacesListAdapter extends ArrayAdapter<Result> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+    public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+        //return super.getView(position, convertView, parent);
+        try {
+            ViewHolder viewHolder;
+            if (view == null){
+                viewHolder = new ViewHolder();
+                view = LayoutInflater.from(context).inflate(R.layout.place_row_layout, null);
+                viewHolder.textViewName = view.findViewById(R.id.textViewName);
+                viewHolder.textViewAddress = view.findViewById(R.id.textViewAddress);
+                viewHolder.imageViewPhoto = view.findViewById(R.id.imageViewPhoto);
+                view.setTag(viewHolder);
+            }else {
+                viewHolder = (ViewHolder) view.getTag();
+            }
+            Result result = results.get(position);
+            viewHolder.textViewName.setText(result.getName());
+            viewHolder.textViewAddress.setText(result.getVicinity());
+            Bitmap bitmap = new ImageAsynTask().doInBackground(result.getIcon());
+            viewHolder.imageViewPhoto.setImageBitmap(bitmap);
+            return view;
+
+        }catch (Exception e){
+            return null;
+        }
     }
+
+    public static class ViewHolder{
+        public  TextView textViewName;
+        public  TextView textViewAddress;
+        public  ImageView imageViewPhoto;
+
+    }
+
+    private class ImageAsynTask extends AsyncTask<String, Void, Bitmap>{
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try{
+                InputStream inputStream = new java.net.URL(params[0]).openStream();
+                return BitmapFactory.decodeStream(inputStream);
+            }catch (Exception e){
+                return null;
+            }
+        }
+    }
+
 }
