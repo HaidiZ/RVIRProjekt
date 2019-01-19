@@ -53,6 +53,8 @@ public class MapsActivity extends AppCompatActivity {
         });
         listViewPlaces = findViewById(R.id.listViewPlaces);
         spinnerType = findViewById(R.id.spinnerType);
+
+       // loadData();
     }
 
     private void buttonSearch_onClick(View view) {
