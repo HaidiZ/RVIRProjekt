@@ -29,8 +29,20 @@ public class Result implements Serializable {
     @SerializedName("place_id")
     private String placeId;
 
+    @SerializedName("rating")
+    private Double rating;
+
+    @SerializedName("reference")
+    private String reference;
+
+    @SerializedName("scope")
+    private String scope;
+
     @SerializedName("types")
     private List<String> types = new ArrayList<>();
+
+    @SerializedName("vicinity")
+    private String vicinity;
 
     public Geometry getGeometry() {
         return geometry;

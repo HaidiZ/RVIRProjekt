@@ -7,11 +7,6 @@
     android:orientation="vertical"
     tools:context=".location.MapsActivity">
 
-    <Spinner
-        android:id="@+id/spinnerType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <EditText
         android:id="@+id/editTextKeyword"
         android:layout_width="match_parent"
@@ -19,6 +14,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/keyword" />
+
+    <Spinner
+        android:id="@+id/spinnerType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/buttonSearch"
