@@ -23,25 +23,27 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
     private Activity activity;
     private List<Favourite> seznamIzbranih;
 
-    public FavouriteAdapter(Context context, Activity activity) {
-        this.context = context;
-        this.activity = activity;
+    public FavouriteAdapter(List<Favourite> seznamIzbranih) {
+        this.seznamIzbranih = seznamIzbranih;
     }
 
 
     @NonNull
     @Override
     public FavouriteAdapter.FavouriteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.favourite_list_row, parent, false);
-        return new FavouriteAdapter.FavouriteViewHolder(view);
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View vrsticaSeznama = inflater.inflate(R.layout.favourite_list_row, parent, false);
+        FavouriteViewHolder viewHolder = new FavouriteViewHolder(vrsticaSeznama);
+        return viewHolder;
     }
 
 
     @Override
     @NonNull
     public void onBindViewHolder( FavouriteAdapter.FavouriteViewHolder holder, int position) {
-        Favourite currentFav = seznamIzbranih.get(position);
-        holder.nazivFilma.setText(currentFav.getNazivFilma());
+        Favourite favourite = seznamIzbranih.get(position);
+        holder.nazivFilma.setText(favourite.getNazivFilma());
     }
 
     @Override
@@ -59,17 +61,10 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
         public FavouriteViewHolder(@NonNull View itemView) {
             super(itemView);
             this.nazivFilma = itemView.findViewById(R.id.runtimeLabel);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("ADAPTER", "Prikaži podrobnosti");
-                    String nazivFilma = seznamIzbranih.get(getAdapterPosition()).getNazivFilma();
-                    Intent intent = new Intent(activity, MovieDetailsActivity.class);
-                    intent.putExtra("id", nazivFilma);
-                    activity.startActivity(intent);
-                }
-            });
         }
+    }
+    public void setData(List<Favourite> newData) {
+        this.seznamIzbranih = newData;
+        notifyDataSetChanged();
     }
 }
