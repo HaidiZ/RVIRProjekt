@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     nextPageButton = findViewById(R.id.buttonPageNext);
     previousPageButton = findViewById(R.id.buttonPagePrevious);
+    Button favListButton = findViewById(R.id.buttonList);
 
     nextPageButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    favListButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        openActivityFavList();
+      }
+    });
     ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sortTypeValues);
     sortTypeSpinner = findViewById(R.id.spinnerSortType);
     sortTypeSpinner.setAdapter(spinnerAdapter);
