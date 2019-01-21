@@ -26,9 +26,9 @@ public class FavListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fav_list);
-      //  myAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "Favourite").build();
-       // populateRecyclerView();
+        setContentView(R.layout.fav_list_2);
+        myAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "Favourite").build();
+        populateRecyclerView();
 
        /* AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
 
@@ -59,7 +59,7 @@ public class FavListActivity extends AppCompatActivity {
             if(osebe.size() ==  0) {
                 return;
             }
-            RecyclerView recyclerView = findViewById(R.id.favrecycleview);
+            RecyclerView recyclerView = findViewById(R.id.fav_list_recView);
             FavouriteAdapter zaposleniAdapter = new FavouriteAdapter(osebe);
             recyclerView.setAdapter(zaposleniAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(FavListActivity.this));
