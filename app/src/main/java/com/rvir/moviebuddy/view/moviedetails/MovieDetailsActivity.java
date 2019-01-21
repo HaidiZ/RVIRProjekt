@@ -6,9 +6,11 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,12 +20,15 @@ import com.rvir.moviebuddy.R;
 import com.rvir.moviebuddy.api.ApiConstants;
 import com.rvir.moviebuddy.api.dto.movie.Genre;
 import com.rvir.moviebuddy.api.dto.movie.Movie;
+import com.rvir.moviebuddy.dao.AppDatabase;
+import com.rvir.moviebuddy.entity.Favourite;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
 public class MovieDetailsActivity extends AppCompatActivity {
+  AppDatabase mydb;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Integer movieId = getIntent().getExtras().getInt("id");
     Log.d("MOVIE_ID", movieId + "");
     loadMovie(movieId);
+    Button addButton = findViewById(R.id.buttonAdd);
+    addButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        addToFavouriteList();
+      }
+    });
   }
 
   private void loadMovie(Integer id) {
@@ -98,5 +110,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
       runtimeText.setVisibility(View.GONE);
       runtimeLabel.setVisibility(View.GONE);
     }
+  }
+
+  public void addToFavouriteList() {
+    final Favourite favourite;
+    TextView runtimeLabel = findViewById(R.id.runtimeLabel);
+    String naslov = runtimeLabel.getText().toString();
+    favourite = new Favourite(naslov);
+    AsyncTask.execute(new Runnable() {
+      @Override
+      public void run() {
+        mydb.favouriteDao().insertFavourite(favourite);
+      }
+    });
   }
 }

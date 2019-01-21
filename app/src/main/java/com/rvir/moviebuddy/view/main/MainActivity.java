@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
   private MoviesSortType currentSortType = MoviesSortType.POPULARITY;
 
   private Button btnMaps;
+  private Button btnList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -133,12 +134,26 @@ public class MainActivity extends AppCompatActivity {
         openActivityMaps();
       }
     });
+
+    btnList = findViewById(R.id.buttonList);
+    btnList.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        openActivityFavList();
+      }
+    });
   }
 
   public void openActivityMaps(){
     Intent intent = new Intent(this, MapsActivity.class);
     startActivity(intent);
   }
+
+  public void openActivityFavList(){
+    Intent intent = new Intent(this, FavListActivity.class);
+    startActivity(intent);
+  }
+
 
   private void loadMovies(int page, MoviesSortType moviesSortType) {
     if (page > 1) {

@@ -7,6 +7,7 @@
     tools:context=".view.main.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,12 +32,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/moviesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="612dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/buttonPagePrevious"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerSortType" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSortType"
+            app:layout_constraintVertical_bias="1.0" />
 
 
         <ProgressBar
@@ -79,18 +82,34 @@
 
         <Button
             android:id="@+id/buttonMaps"
-            android:layout_width="49dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="196dp"
-            android:layout_marginLeft="196dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
             android:text="Maps"
+            android:textSize="8sp"
             app:layout_constraintBottom_toTopOf="@+id/moviesRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/spinnerSortType"
+            app:layout_constraintStart_toEndOf="@+id/buttonList"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/buttonList"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:text="List"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toTopOf="@+id/moviesRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

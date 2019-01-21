@@ -18,7 +18,11 @@ public class Cinema {
     private double dolzina;
     private double sirina;
 
-    public Cinema(String naziv, String naslov, double dolzina, double sirina) {
+    public Cinema(String nazivKina, String naslov, double dolzina, double sirina) {
+        this.nazivKina = nazivKina;
+        this.naslov = naslov;
+        this.dolzina = dolzina;
+        this.sirina = sirina;
 
     }
 

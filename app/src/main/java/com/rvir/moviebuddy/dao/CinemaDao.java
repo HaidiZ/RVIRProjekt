@@ -18,8 +18,8 @@ public interface CinemaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertCinema(Cinema cinema);
 
-    @Query("SELECT * FROM cinema")
-    ArrayList<Cinema> getAllCinemas();
+ /*   @Query("SELECT * FROM Cinema")
+    ArrayList<Cinema> getAllCinemas();*/
 
 }
 
