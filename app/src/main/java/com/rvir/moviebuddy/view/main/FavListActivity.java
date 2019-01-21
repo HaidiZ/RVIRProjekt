@@ -20,9 +20,6 @@ import com.rvir.moviebuddy.entity.User;
 import java.util.List;
 
 public class FavListActivity extends AppCompatActivity {
-
-    RecyclerView mRecyclerView;
-    RecyclerView.Adapter mAdapter;
     AppDatabase myAppDatabase;
 
 
@@ -30,8 +27,8 @@ public class FavListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav_list);
-        myAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "Favourite").build();
-        populateRecyclerView();
+      //  myAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "Favourite").build();
+       // populateRecyclerView();
 
        /* AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
 
