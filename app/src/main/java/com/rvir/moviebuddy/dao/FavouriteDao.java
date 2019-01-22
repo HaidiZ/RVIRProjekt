@@ -9,6 +9,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import io.reactivex.Completable;
+import io.reactivex.Single;
 
 @Dao
 public interface FavouriteDao {
@@ -16,7 +17,7 @@ public interface FavouriteDao {
     Completable insertFavourite(Favourite favourite);
 
     @Query("SELECT * FROM Favourite")
-    List<Favourite> getAll();
+    Single<List<Favourite>> getAll();
 
 
 }

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Favourite {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private  int id;
     private String nazivFilma;
