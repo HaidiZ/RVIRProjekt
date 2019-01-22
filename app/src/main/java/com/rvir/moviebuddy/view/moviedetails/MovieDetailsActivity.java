@@ -2,6 +2,7 @@ package com.rvir.moviebuddy.view.moviedetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rvir.moviebuddy.MovieBuddyApplication;
 import com.rvir.moviebuddy.R;
@@ -21,6 +23,8 @@ import com.rvir.moviebuddy.api.ApiConstants;
 import com.rvir.moviebuddy.api.dto.movie.Genre;
 import com.rvir.moviebuddy.api.dto.movie.Movie;
 import com.rvir.moviebuddy.dao.AppDatabase;
+import com.rvir.moviebuddy.dao.DbUtil;
+import com.rvir.moviebuddy.dao.FavouriteDao;
 import com.rvir.moviebuddy.entity.Favourite;
 import com.squareup.picasso.Picasso;
 
@@ -29,9 +33,11 @@ import java.util.Locale;
 
 public class MovieDetailsActivity extends AppCompatActivity {
   AppDatabase mydb;
-
+  FavouriteDao favouriteDao;
+  Favourite favourite;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    favouriteDao = DbUtil.getDb(getApplicationContext()).favouriteDao();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_movie_details);
     Integer movieId = getIntent().getExtras().getInt("id");
@@ -113,15 +119,23 @@ public class MovieDetailsActivity extends AppCompatActivity {
   }
 
   public void addToFavouriteList() {
-    final Favourite favourite;
-    TextView runtimeLabel = findViewById(R.id.runtimeLabel);
+    TextView runtimeLabel = findViewById(R.id.titleValue);
     String naslov = runtimeLabel.getText().toString();
     favourite = new Favourite(naslov);
-    AsyncTask.execute(new Runnable() {
-      @Override
-      public void run() {
-        mydb.favouriteDao().insertFavourite(favourite);
-      }
-    });
+    favouriteDao.insertFavourite(favourite)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new DisposableCompletableObserver() {
+              @Override
+              public void onComplete() {
+                finish();
+              }
+
+              @Override
+              public void onError(Throwable e) {
+                Log.e("ERROR", e.getMessage());
+              }
+            });
+    Toast.makeText(getApplicationContext(), "Film dodan na favourite listo.", Toast.LENGTH_SHORT).show();
   }
 }

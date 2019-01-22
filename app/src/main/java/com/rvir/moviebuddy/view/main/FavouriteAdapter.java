@@ -60,7 +60,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.Favo
 
         public FavouriteViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.nazivFilma = itemView.findViewById(R.id.runtimeLabel);
+            this.nazivFilma = itemView.findViewById(R.id.textView);
         }
     }
     public void setData(List<Favourite> newData) {

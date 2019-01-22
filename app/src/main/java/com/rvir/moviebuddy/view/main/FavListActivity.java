@@ -21,14 +21,15 @@ import java.util.List;
 
 public class FavListActivity extends AppCompatActivity {
     AppDatabase myAppDatabase;
-
-
+    private RecyclerView moviesRecyclerView;
+    private Favourite moviesAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fav_list_2);
         myAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "Favourite").build();
         populateRecyclerView();
+
 
        /* AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
 
@@ -61,6 +62,7 @@ public class FavListActivity extends AppCompatActivity {
             }
             RecyclerView recyclerView = findViewById(R.id.fav_list_recView);
             FavouriteAdapter zaposleniAdapter = new FavouriteAdapter(osebe);
+            recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(zaposleniAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(FavListActivity.this));
             Toast.makeText(getApplicationContext(), "seznam posodobljen", Toast.LENGTH_SHORT).show();
